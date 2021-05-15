@@ -1,6 +1,8 @@
 # COVID-19 app with Shiny
 
-> Workflow Load required packages
+> Workflow
+
+Load required packages
 
 ``` r
 suppressPackageStartupMessages({
@@ -29,7 +31,7 @@ r <- fromJSON("https://hub.analythium.io/covid-19/api/v1/regions")
 r$slug
 ```
 
-Pich an ID, get/process the data, fit/forecast an ETS model
+Pick an ID, get/process the data, fit/forecast an ETS model
 
 ``` r
 pred <- "canada-combined" %>%

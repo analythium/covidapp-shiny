@@ -4,7 +4,9 @@
 #'     variant: gfm
 #' ---
 #' # COVID-19 app with Shiny
+#'
 #' > Workflow
+#'
 #' Load required packages
 suppressPackageStartupMessages({
 library(forecast)
@@ -23,7 +25,7 @@ source("functions.R")
 #+eval=FALSE
 r <- fromJSON("https://hub.analythium.io/covid-19/api/v1/regions")
 r$slug
-#' Pich an ID, get/process the data, fit/forecast an ETS model
+#' Pick an ID, get/process the data, fit/forecast an ETS model
 pred <- "canada-combined" %>%
   get_data() %>%
   process_data(cases="confirmed", last="2021-05-01") %>%
