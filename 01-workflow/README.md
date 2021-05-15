@@ -1,4 +1,6 @@
-Load required packages
+# COVID-19 app with Shiny
+
+> Workflow Load required packages
 
 ``` r
 suppressPackageStartupMessages({

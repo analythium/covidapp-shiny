@@ -1,11 +1,10 @@
 #' ---
-#' title: COVID-19 app with Shiny
-#' author: Peter Solymos
 #' output:
 #'   md_document:
 #'     variant: gfm
 #' ---
-#'
+#' # COVID-19 app with Shiny
+#' > Workflow
 #' Load required packages
 suppressPackageStartupMessages({
 library(forecast)
