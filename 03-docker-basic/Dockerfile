@@ -18,7 +18,7 @@ COPY Rprofile.site /etc/R
 ENV _R_SHLIB_STRIP_=true
 
 RUN install.r shiny forecast jsonlite ggplot2 htmltools
-RUN R -e "install.packages('plotly')"
+RUN Rscript -e "install.packages('plotly')"
 
 RUN echo "local(options(shiny.port = 3838, shiny.host = '0.0.0.0'))" > /usr/lib/R/etc/Rprofile.site
 
