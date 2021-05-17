@@ -4,6 +4,8 @@ A dockerized Shiny app to display and forecast COVID-19 daily cases
 
 The approach uses renv to install dependencies from `renv.lock` file.
 
+Uses "implicit"-style snapshot by default.
+
 ```r
 # initialize project & discovering dependencies
 renv::init()
@@ -13,7 +15,7 @@ renv::snapshot()
 ```
 
 ```bash
-# name of DOcker image
+# name of the Docker image
 export IMAGE="analythium/covidapp-shiny:renv"
 
 # build image

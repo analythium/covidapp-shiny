@@ -5,7 +5,7 @@ A dockerized Shiny app to display and forecast COVID-19 daily cases
 The basic approach uses `DESCRIPTION` file to install dependencies.
 
 ```bash
-# name of DOcker image
+# name of the Docker image
 export IMAGE="analythium/covidapp-shiny:deps"
 
 # build image

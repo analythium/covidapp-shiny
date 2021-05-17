@@ -25,11 +25,11 @@ RUN addgroup --system app && adduser --system --ingroup app app
 WORKDIR /home/app
 
 COPY ./renv.lock .
-RUN Rscript -e "options(renv.consent = TRUE);renv::restore(lockfile = '/home/app/renv.lock')"
+RUN Rscript -e "options(renv.consent = TRUE);renv::restore(lockfile = '/home/app/renv.lock', repos = c(CRAN='https://packagemanager.rstudio.com/all/__linux__/focal/latest'))"
 RUN rm -f renv.lock
 
 COPY app .
-WORKDIR /home/app
+
 RUN chown app:app -R /home/app
 USER app
 

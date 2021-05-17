@@ -28,7 +28,7 @@ RUN addgroup --system app && adduser --system --ingroup app app
 WORKDIR /home/app
 
 COPY app .
-WORKDIR /home/app
+
 RUN chown app:app -R /home/app
 USER app
 

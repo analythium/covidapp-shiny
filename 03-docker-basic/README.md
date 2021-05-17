@@ -5,7 +5,7 @@ A dockerized Shiny app to display and forecast COVID-19 daily cases
 The basic approach uses `install.r` and `R -e install.packages()` to install dependencies.
 
 ```bash
-# name of DOcker image
+# name of the Docker image
 export IMAGE="analythium/covidapp-shiny:basic"
 
 # build image
