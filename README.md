@@ -3,7 +3,7 @@
 
 - [Workflow](01-workflow)
 - [Shiny app](02-shiny-app)
-- Dockerized Shiny app
+- Dockerized Shiny app:
   - [explicit dependencies](03-docker-basic)
   - [using DESCRIPTION](04-docker-deps)
   - [using renv](05-docker-renv)
