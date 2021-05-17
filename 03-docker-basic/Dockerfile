@@ -2,7 +2,6 @@ FROM rocker/r-ubuntu:20.04
 
 LABEL maintainer="Peter Solymos <peter@analythium.io>"
 
-RUN add-apt-repository ppa:marutter/rrutter3.5
 RUN apt-get update && apt-get install -y --no-install-recommends \
     sudo \
     pandoc \
