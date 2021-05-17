@@ -1,0 +1,28 @@
+FROM rstudio/r-base:4.0.4-focal
+
+LABEL maintainer="Peter Solymos <peter@analythium.io>"
+
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    sudo \
+    pandoc \
+    pandoc-citeproc \
+    libcurl4-gnutls-dev \
+    libcairo2-dev \
+    libxt-dev \
+    libssl-dev \
+    libssh2-1-dev \
+    && rm -rf /var/lib/apt/lists/*
+
+RUN R -q -e "install.packages(c('shiny', 'forecast', \
+    'jsonlite', 'ggplot2', 'htmltools', 'plotly'), repos = \
+    c(CRAN='https://packagemanager.rstudio.com/all/__linux__/focal/latest'))" 
+
+RUN addgroup --system app && adduser --system --ingroup app app
+WORKDIR /home/app
+COPY app .
+RUN chown app:app -R /home/app
+USER app
+
+EXPOSE 3838
+
+CMD ["R", "-e", "shiny::runApp('/home/app', port = 3838, host = '0.0.0.0')"]
