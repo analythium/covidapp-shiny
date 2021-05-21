@@ -1,4 +1,4 @@
-FROM rhub/r-minimal:latest
+FROM rhub/r-minimal:4.0.5
 
 LABEL maintainer="Peter Solymos <peter@analythium.io>"
 
@@ -7,7 +7,7 @@ RUN apk add --no-cache --update-cache \
     --repository http://nl.alpinelinux.org/alpine/v3.11/main \
     autoconf=2.69-r2 \
     automake=1.16.1-r0 \
-    bash gcc tzdata
+    bash tzdata
 RUN echo "America/Edmonton" > /etc/timezone
 
 RUN installr -d \
@@ -25,5 +25,5 @@ USER app
 
 EXPOSE 3838
 
-CMD ["R", "-e", "shiny::runApp('/home/app', port = 3838, host = '0.0.0.0')"]
+CMD ["R", "-e", "options(tz='America/Edmonton');shiny::runApp('/home/app', port = 3838, host = '0.0.0.0')"]
 
