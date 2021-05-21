@@ -9,5 +9,6 @@ This repository complements the post [_Dockerized Shiny Apps with Dependencies_]
   - [explicit dependencies](03-docker-basic)
   - [using DESCRIPTION](04-docker-deps)
   - [using renv](05-docker-renv)
+- [Compare 4 different parent images](99-images)
 
 MIT License (c) 2021 Analythium Solutions Inc.
