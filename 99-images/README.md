@@ -5,7 +5,7 @@ A dockerized Shiny app to display and forecast COVID-19 daily cases
 Pull parent images:
 
 ```bash
-docker pull rhub/r-minimal:latest
+docker pull rhub/r-minimal:4.0.5
 docker pull rocker/r-base:4.0.4
 docker pull rocker/r-ubuntu:20.04
 docker pull rstudio/r-base:4.0.4-focal
@@ -29,7 +29,7 @@ Used a 20215 MacBook Pro for the build times recorded here.
 
 Tested images with `docker build -t $IMAGE .`
 
-## rhub/r-minimal:latest
+## rhub/r-minimal:4.0.5
 
 Total build time: 1634.8 sec building packages from source
 
