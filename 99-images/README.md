@@ -88,14 +88,14 @@ analythium/covidapp-shiny   focal               1.38GB
 ```r
 x = data.frame(TAG=c("minimal", "base", "ubuntu", "focal"),
   PARENT_SIZE=c(35, 761, 673, 894) / 1000, # base image
-  FINAL_SIZE=c(350 / 1000, 1.05, 1.22, 1.38)) # final image
+  FINAL_SIZE=c(222 / 1000, 1.05, 1.22, 1.38)) # final image
 x$DIFF = x$FINAL_SIZE - x$PARENT_SIZE
 
-      TAG BASE_SIZE FINAL_SIZE  DIFF
-1 minimal    0.0342      0.342 0.308
-2    base    0.7432      1.050 0.307
-3  ubuntu    0.6572      1.220 0.563
-4   focal    0.8730      1.380 0.507
+      TAG PARENT_SIZE FINAL_SIZE  DIFF
+1 minimal       0.035      0.222 0.187
+2    base       0.761      1.050 0.289
+3  ubuntu       0.673      1.220 0.547
+4   focal       0.894      1.380 0.486
 ```
 
 Diff is similar (Ubuntu is larger likely because of different system libraries).
