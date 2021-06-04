@@ -6,6 +6,8 @@ This repository complements the following posts:
 - [_Dockerized Shiny Apps with Dependencies_](https://hosting.analythium.io/dockerized-shiny-apps-with-dependencies)
 - [_Best Practices for R with Docker_](https://hosting.analythium.io/best-practices-for-r-with-docker/)
 
+Structure of the repository:
+
 - [Workflow](01-workflow)
 - [Shiny app](02-shiny-app)
 - Dockerized Shiny app:
