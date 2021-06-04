@@ -9,6 +9,7 @@ docker pull rhub/r-minimal:4.0.5
 docker pull rocker/r-base:4.0.4
 docker pull rocker/r-ubuntu:20.04
 docker pull rstudio/r-base:4.0.4-focal
+docker pull rocker/shiny:4.0.5
 ```
 
 Initial parent image sizes (May 2021):
@@ -17,17 +18,18 @@ Initial parent image sizes (May 2021):
 $ docker images --format 'table {{.Repository}}\t{{.Tag}}\t{{.Size}}'
 
 REPOSITORY          TAG                 SIZE
-rhub/r-minimal      latest              35.2MB
+rhub/r-minimal      4.0.5              35.2MB
 rocker/r-base       4.0.4               761MB
 rocker/r-ubuntu     20.04               673MB
 rstudio/r-base      4.0.4-focal         894MB
+rocker/shiny        4.0.5              1.37GB
 ```
 
 Need `docker --version` >18.09 for BuildKit.
 
 Used a 20215 MacBook Pro for the build times recorded here.
 
-Tested images with `docker build -t $IMAGE .`
+Tested images with `docker run -p 8080:3838 $IMAGE`.
 
 ## rhub/r-minimal:4.0.5
 
@@ -37,8 +39,6 @@ Total build time: 1634.8 sec building packages from source
 export IMAGE="analythium/covidapp-shiny:minimal"
 export FILE="Dockerfile.minimal"
 DOCKER_BUILDKIT=1 docker build --no-cache -f $FILE -t $IMAGE .
-
-docker run -p 8080:3838 $IMAGE
 ```
 
 ## rocker/r-base:4.0.4
@@ -71,6 +71,16 @@ export FILE="Dockerfile.focal"
 DOCKER_BUILDKIT=1 docker build --no-cache -f $FILE -t $IMAGE .
 ```
 
+## rocker/shiny:4.0.5
+
+Total build time: 136.0 sec installing packages from binary
+
+```bash
+export IMAGE="analythium/covidapp-shiny:shiny"
+export FILE="Dockerfile.shiny"
+DOCKER_BUILDKIT=1 docker build --no-cache -f $FILE -t $IMAGE .
+```
+
 ## Sizes
 
 ```bash
@@ -83,12 +93,14 @@ analythium/covidapp-shiny   minimal             349MB
 analythium/covidapp-shiny   base                1.05GB
 analythium/covidapp-shiny   ubuntu              1.22GB
 analythium/covidapp-shiny   focal               1.38GB
+analythium/covidapp-shiny   shiny               1.61GB
 ```
 
+, 1.61GB (original parent size: 1.37GB)
 ```r
-x = data.frame(TAG=c("minimal", "base", "ubuntu", "focal"),
-  PARENT_SIZE=c(35, 761, 673, 894) / 1000, # base image
-  FINAL_SIZE=c(222 / 1000, 1.05, 1.22, 1.38)) # final image
+x = data.frame(TAG=c("minimal", "base", "ubuntu", "focal", "shiny"),
+  PARENT_SIZE=c(35, 761, 673, 894, 1380) / 1000, # base image
+  FINAL_SIZE=c(222 / 1000, 1.05, 1.22, 1.38, 1.61)) # final image
 x$DIFF = x$FINAL_SIZE - x$PARENT_SIZE
 
       TAG PARENT_SIZE FINAL_SIZE  DIFF
@@ -96,6 +108,7 @@ x$DIFF = x$FINAL_SIZE - x$PARENT_SIZE
 2    base       0.761      1.050 0.289
 3  ubuntu       0.673      1.220 0.547
 4   focal       0.894      1.380 0.486
+5   shiny       1.380      1.610 0.230
 ```
 
 Diff is similar (Ubuntu is larger likely because of different system libraries).
@@ -103,7 +116,7 @@ Final image size reflects base image sizes.
 
 ## Links
 
-- [rstudio/r-system-requirements](https://github.com/rstudio/r-system-requirements)
+- [rstudio/r-system-requirements](https://github.com/rstudio/r-system-requirements), [browse the database](https://packagemanager.rstudio.com/client/#/repos/2/packages)
 - [r-hub/sysreqsdb](https://github.com/r-hub/sysreqsdb)
 - [r-universe](https://r-universe.dev/)
 - [maketools](https://cran.r-project.org/web/packages/maketools/vignettes/sysdeps.html)
