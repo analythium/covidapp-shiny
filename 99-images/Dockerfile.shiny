@@ -1,6 +1,5 @@
 FROM rocker/shiny:4.0.5
 
-# Install system requirements for index.R as needed
 RUN apt-get update && apt-get install -y \
     --no-install-recommends \
     git-core \
@@ -21,7 +20,6 @@ COPY ./app/* /srv/shiny-server/
 
 USER shiny
 
-#EXPOSE 3838 # already exposed
+EXPOSE 3838
 
 CMD ["/usr/bin/shiny-server"]
-#CMD ["/init"]
