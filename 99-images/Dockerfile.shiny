@@ -14,7 +14,13 @@ RUN apt-get update && apt-get install -y \
 
 ENV _R_SHLIB_STRIP_=true
 COPY Rprofile.site /etc/R
-RUN install2.r --error --skipinstalled shiny forecast jsonlite ggplot2 htmltools plotly
+RUN install2.r --error --skipinstalled \
+    shiny \
+    forecast \
+    jsonlite \
+    ggplot2 \
+    htmltools \
+    plotly
 
 COPY ./app/* /srv/shiny-server/
 
