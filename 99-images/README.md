@@ -88,7 +88,7 @@ DOCKER_BUILDKIT=1 docker build --no-cache -f $FILE -t $IMAGE .
 
 ## rocker/r-bspm:20.04
 
-Total build time: 140.1 sec installing packages from binary
+Total build time: 89.5 sec installing packages using `apt`
 
 ```bash
 export IMAGE="analythium/covidapp-shiny:bspm"
@@ -98,7 +98,7 @@ DOCKER_BUILDKIT=1 docker build --no-cache -f $FILE -t $IMAGE .
 
 ## eddelbuettel/r2u:focal
 
-Total build time: 32.5 sec installing packages using `apt-get`
+Total build time: 32.5 sec installing packages using `apt`
 
 ```bash
 export IMAGE="analythium/covidapp-shiny:r2u"
@@ -119,7 +119,7 @@ analythium/covidapp-shiny   base                1.05GB
 analythium/covidapp-shiny   ubuntu              1.22GB
 analythium/covidapp-shiny   focal               1.38GB
 analythium/covidapp-shiny   shiny               1.61GB
-analythium/covidapp-shiny   bspm                1.31GB
+analythium/covidapp-shiny   bspm                898MB
 analythium/covidapp-shiny   r2u                 959MB
 ```
 
@@ -127,7 +127,7 @@ analythium/covidapp-shiny   r2u                 959MB
 ```r
 x = data.frame(TAG=c("minimal", "base", "ubuntu", "focal", "shiny", "bspm", "r2u"),
   PARENT_SIZE=c(35, 761, 673, 894, 1380, 758, 804) / 1000, # base image
-  FINAL_SIZE=c(222 / 1000, 1.05, 1.22, 1.38, 1.61, 1.31, 0.959)) # final image
+  FINAL_SIZE=c(222 / 1000, 1.05, 1.22, 1.38, 1.61, 0.898, 0.959)) # final image
 x$DIFF = x$FINAL_SIZE - x$PARENT_SIZE
 
       TAG PARENT_SIZE FINAL_SIZE  DIFF
@@ -136,7 +136,7 @@ x$DIFF = x$FINAL_SIZE - x$PARENT_SIZE
 3  ubuntu       0.673      1.220 0.547
 4   focal       0.894      1.380 0.486
 5   shiny       1.380      1.610 0.230
-6    bspm       0.758      1.310 0.552
+6    bspm       0.758      0.898 0.140
 7     r2u       0.804      0.959 0.155
 ```
 
@@ -150,3 +150,4 @@ Final image size reflects base image sizes.
 - [r-universe](https://r-universe.dev/)
 - [maketools](https://cran.r-project.org/web/packages/maketools/vignettes/sysdeps.html)
 - [r2u](https://eddelbuettel.github.io/r2u/)
+- [bspm](https://github.com/Enchufa2/bspm)
